@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Entity(name="tb_user")
-public class UserModel {
+@Entity(name="tb_item")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class ItemModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -19,11 +20,9 @@ public class UserModel {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
+    private Integer totalUses;
+    private Integer actualUses;
+    private Integer size;
 
     @CreationTimestamp
     @Column(updatable = false)

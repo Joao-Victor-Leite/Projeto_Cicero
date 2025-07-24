@@ -9,21 +9,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Entity(name="tb_user")
-public class UserModel {
+@Entity(name="tb_health")
+public class HealthModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(unique = true, nullable = false)
-    private String name;
+    private Integer box;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String description;
 
-    @Column(nullable = false)
-    private String password;
+    @Column(unique = true, nullable = false)
+    private Integer order;
 
     @CreationTimestamp
     @Column(updatable = false)
