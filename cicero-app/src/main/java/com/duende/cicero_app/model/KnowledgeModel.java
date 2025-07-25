@@ -1,9 +1,12 @@
 package com.duende.cicero_app.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "tb_knowledge")
@@ -17,4 +20,8 @@ public class KnowledgeModel {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "origin", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<InfectedOriginModel> infectedOrigins = new HashSet<>();
 }
