@@ -1,16 +1,19 @@
 package com.duende.cicero_app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 @Entity(name="tb_purpose")
-public class PurposeModel {
+@Getter
+@Setter
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class PurposeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -18,4 +21,13 @@ public class PurposeModel {
 
     private String name;
     private String description;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdData;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedData;
+
+    public PurposeModel(){}
 }

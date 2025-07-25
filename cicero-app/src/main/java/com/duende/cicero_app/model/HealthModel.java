@@ -1,29 +1,29 @@
 package com.duende.cicero_app.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
-@Data
 @Entity(name="tb_health")
+@Getter
+@Setter
 public class HealthModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(unique = true, nullable = false)
     private Integer box;
-
-    @Column(unique = true, nullable = false)
     private String description;
-
-    @Column(unique = true, nullable = false)
-    private Integer order;
+    private Integer boxSequence;
 
     @CreationTimestamp
     @Column(updatable = false)
@@ -31,4 +31,8 @@ public class HealthModel {
 
     @UpdateTimestamp
     private LocalDateTime updatedData;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "infected", fetch = FetchType.LAZY)
+    private Set<InfectedModel> infecteds = new HashSet<>();
 }

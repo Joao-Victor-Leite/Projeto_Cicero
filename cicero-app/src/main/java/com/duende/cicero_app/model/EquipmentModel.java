@@ -11,4 +11,6 @@ public class EquipmentModel extends ItemModel{
 
     private Integer points;
 
+    public EquipmentModel(){}
+
 }

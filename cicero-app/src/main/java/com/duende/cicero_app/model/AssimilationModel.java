@@ -4,33 +4,27 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name="tb_item")
+@Entity(name="tb_assimilation")
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class ItemModel {
+public abstract class AssimilationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String name;
-
-    private Integer totalUses;
-    private Integer actualUses;
-    private Integer size;
+    private Integer type;
+    private String card;
+    private String card_description;
 
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdData;
 
-    @UpdateTimestamp
-    private LocalDateTime updatedData;
-
-    public ItemModel(){}
+    public AssimilationModel(){}
 }
