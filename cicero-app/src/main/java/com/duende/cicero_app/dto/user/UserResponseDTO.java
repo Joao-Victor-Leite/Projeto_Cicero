@@ -1,4 +1,4 @@
-package com.duende.cicero_app.dto;
+package com.duende.cicero_app.dto.user;
 
 import com.duende.cicero_app.model.UserModel;
 import lombok.Getter;

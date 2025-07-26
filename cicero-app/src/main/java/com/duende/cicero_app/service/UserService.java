@@ -1,7 +1,7 @@
 package com.duende.cicero_app.service;
 
-import com.duende.cicero_app.dto.UserCreateDTO;
-import com.duende.cicero_app.dto.UserResponseDTO;
+import com.duende.cicero_app.dto.user.UserCreateDTO;
+import com.duende.cicero_app.dto.user.UserResponseDTO;
 import com.duende.cicero_app.model.UserModel;
 import com.duende.cicero_app.repository.UserRepository;
 import com.duende.cicero_app.util.Utils;
