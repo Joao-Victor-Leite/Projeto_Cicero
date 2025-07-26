@@ -29,7 +29,7 @@ public class UserService {
     }
 
     // GET BY ID
-    public UserResponseDTO findUserByID(Long id){
+    public UserResponseDTO findUserByID(Long id) {
         UserModel user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com este id"));
         return UserResponseDTO.fromEntity(user);
@@ -64,7 +64,7 @@ public class UserService {
     }
 
     // DELETE
-    public void deleteUser(Long id){
+    public void deleteUser(Long id) {
         if(!userRepository.existsById(id)) {
             throw new RuntimeException("Usuário não encontrado");
         }

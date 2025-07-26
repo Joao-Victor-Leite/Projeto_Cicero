@@ -22,19 +22,19 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> findAll(){
+    public ResponseEntity<List<UserResponseDTO>> findAll() {
         List<UserResponseDTO> users = userService.findAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id){
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
         UserResponseDTO user = userService.findUserByID(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> create(@RequestBody UserCreateDTO dto){
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserCreateDTO dto) {
         UserResponseDTO response = userService.createUser(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -46,7 +46,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id){
+    public ResponseEntity<String> delete(@PathVariable Long id) {
         try{
             userService.deleteUser(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuário deletado");
