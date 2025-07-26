@@ -39,4 +39,19 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> update(@PathVariable Long id, @RequestBody UserCreateDTO dto) {
+        UserResponseDTO userUpdated = userService.updateUser(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(userUpdated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        try{
+            userService.deleteUser(id);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuário deletado");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 }

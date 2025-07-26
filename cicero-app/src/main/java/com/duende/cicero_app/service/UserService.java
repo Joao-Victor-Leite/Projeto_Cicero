@@ -4,6 +4,7 @@ import com.duende.cicero_app.dto.UserCreateDTO;
 import com.duende.cicero_app.dto.UserResponseDTO;
 import com.duende.cicero_app.model.UserModel;
 import com.duende.cicero_app.repository.UserRepository;
+import com.duende.cicero_app.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +45,30 @@ public class UserService {
 
         UserModel userSaved = userRepository.save(user);
         return UserResponseDTO.fromEntity(userSaved);
+    }
+
+    // PUT
+    public UserResponseDTO updateUser(Long id, UserCreateDTO dto) {
+        UserModel userExisting = userRepository.findById(id)
+                .orElse(null);
+
+        UserModel userUpdated = new UserModel();
+        userUpdated.setName(dto.getName());
+        userUpdated.setEmail(dto.getEmail());
+        userUpdated.setPassword(dto.getPassword());
+
+        Utils.copyNonNullProperties(userUpdated, userExisting);
+
+        UserModel userSaved = userRepository.save(userExisting);
+        return  UserResponseDTO.fromEntity(userSaved);
+    }
+
+    // DELETE
+    public void deleteUser(Long id){
+        if(!userRepository.existsById(id)) {
+            throw new RuntimeException("Usuário não encontrado");
+        }
+        userRepository.deleteById(id);
     }
 
 }
