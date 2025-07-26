@@ -9,7 +9,6 @@ public class HealthResponseDTO {
     private Long id;
     private Integer box;
     private String description;
-    private Integer boxSequence;
 
     public static  HealthResponseDTO fromEntity(HealthModel health) {
 
@@ -17,7 +16,6 @@ public class HealthResponseDTO {
         dto.id = health.getId();
         dto.box = health.getBox();
         dto.description = health.getDescription();
-        dto.boxSequence = health.getBoxSequence();
 
         return dto;
     }

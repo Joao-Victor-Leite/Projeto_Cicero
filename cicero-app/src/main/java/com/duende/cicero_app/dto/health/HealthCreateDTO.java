@@ -10,6 +10,5 @@ public class HealthCreateDTO {
     private Long id;
     private Integer box;
     private String description;
-    private Integer boxSequence;
 
 }

@@ -15,7 +15,6 @@ public class HealthModel {
 
     private Integer box;
     private String description;
-    private Integer boxSequence;
 
     public HealthModel(){}
 }
