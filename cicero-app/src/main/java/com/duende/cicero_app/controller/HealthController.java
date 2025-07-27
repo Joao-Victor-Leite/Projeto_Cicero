@@ -1,6 +1,5 @@
 package com.duende.cicero_app.controller;
 
-import com.duende.cicero_app.dto.health.HealthCreateDTO;
 import com.duende.cicero_app.dto.health.HealthResponseDTO;
 import com.duende.cicero_app.service.HealthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +30,5 @@ public class HealthController {
     public ResponseEntity<HealthResponseDTO> findById(@PathVariable Long id) {
         HealthResponseDTO healthBox = healthService.findHealthById(id);
         return ResponseEntity.status(HttpStatus.OK).body(healthBox);
-    }
-
-    @PostMapping("/{id}")
-    public ResponseEntity<HealthResponseDTO> create(@RequestBody HealthCreateDTO dto) {
-        HealthResponseDTO response = healthService.createHeatlhBox(dto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

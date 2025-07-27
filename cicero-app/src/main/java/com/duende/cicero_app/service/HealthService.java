@@ -1,6 +1,5 @@
 package com.duende.cicero_app.service;
 
-import com.duende.cicero_app.dto.health.HealthCreateDTO;
 import com.duende.cicero_app.dto.health.HealthResponseDTO;
 import com.duende.cicero_app.model.HealthModel;
 import com.duende.cicero_app.repository.HealthRepository;
@@ -32,16 +31,5 @@ public class HealthService {
         HealthModel health = healthRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Caixa de vida não existe"));
         return HealthResponseDTO.fromEntity(health);
-    }
-
-    // POST
-    public HealthResponseDTO createHeatlhBox(HealthCreateDTO dto) {
-
-        HealthModel health = new HealthModel();
-        health.setBox(dto.getBox());
-        health.setDescription(dto.getDescription());
-
-        HealthModel healthSaved = healthRepository.save(health);
-        return  HealthResponseDTO.fromEntity(healthSaved);
     }
 }
