@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.UUID;
 
 @Entity(name = "tb_feat")
 @Getter
@@ -15,10 +14,12 @@ import java.util.UUID;
 public class FeatModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private Integer cost;
     private String description;
+
+    public FeatModel() {}
 }
