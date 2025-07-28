@@ -1,9 +1,11 @@
-FROM eclipse-temurin:17
+FROM maven:3.8.6-eclipse-temurin-17-alpine AS builder
 
-# Diretorio de trabalho
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copia do package
-COPY /target/cicero-app-0.0.1-SNAPSHOT.jar /app/cicero-app-docker.jar
-
-ENTRYPOINT ["java","-jar","cicero-app-docker.jar"]
+FROM eclipse-temurin:17
+WORKDIR /app
+COPY --from=builder /app/target/cicero-app-*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
