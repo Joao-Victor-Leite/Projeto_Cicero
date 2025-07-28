@@ -22,7 +22,7 @@ public class UserService {
     }
 
     // GET ALL
-    public List<UserResponseDTO> findAllUsers(){
+    public List<UserResponseDTO> findAllUsers() {
         return userRepository.findAll().stream()
                 .map(UserResponseDTO::fromEntity)
                 .collect(Collectors.toList());
