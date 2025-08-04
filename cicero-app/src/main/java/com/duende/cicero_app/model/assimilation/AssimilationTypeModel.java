@@ -17,8 +17,8 @@ public class AssimilationTypeModel {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
-    private List<AssimilationModel> assimilation = new ArrayList<>();
+    @OneToMany(mappedBy = "type")
+    private List<AssimilationCardModel> cards = new ArrayList<>();
 
     public AssimilationTypeModel () {}
 }
