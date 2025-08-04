@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity(name="tb_assimilation")
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name="tb_assimilation_card")
 @Getter
 @Setter
-public class AssimilationModel {
+public class AssimilationCardModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +23,8 @@ public class AssimilationModel {
     private String name;
     private String card;
 
-    public AssimilationModel() {}
+    @OneToMany(mappedBy = "card")
+    private List<AssimilationSkillModel> skills = new ArrayList<>();
+
+    public AssimilationCardModel() {}
 }
