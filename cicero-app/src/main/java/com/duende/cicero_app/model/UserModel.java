@@ -1,16 +1,22 @@
 package com.duende.cicero_app.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name="tb_user")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserModel {
 
     @Id
@@ -33,5 +39,7 @@ public class UserModel {
     @UpdateTimestamp
     private LocalDateTime updatedData;
 
-    public UserModel() {}
+    @OneToMany
+    private List<InfectedModel> infected = new ArrayList<>();
+
 }
