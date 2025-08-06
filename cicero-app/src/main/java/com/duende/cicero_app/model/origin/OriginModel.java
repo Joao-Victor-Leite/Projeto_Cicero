@@ -1,28 +1,26 @@
-package com.duende.cicero_app.model.attribute;
+package com.duende.cicero_app.model.origin;
 
-import com.duende.cicero_app.model.infected.InfectedPracticeModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-@Entity(name = "tb_practice")
+@MappedSuperclass
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PracticeModel {
+public abstract class OriginModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "practice")
-    private List<InfectedPracticeModel> infectedPracticeList;
+    private Integer scoreTotal = 1;
+    private Integer scoreCurrent;
 
 }

@@ -1,6 +1,6 @@
 package com.duende.cicero_app.dto.origin;
 
-import com.duende.cicero_app.model.OriginModel;
+import com.duende.cicero_app.model.origin.OriginModel;
 import lombok.Getter;
 
 @Getter

@@ -1,5 +1,6 @@
 package com.duende.cicero_app.model;
 
+import com.duende.cicero_app.model.infected.InfectedModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package com.duende.cicero_app.service;
 
 import com.duende.cicero_app.dto.origin.OriginResponseDTO;
-import com.duende.cicero_app.model.OriginModel;
+import com.duende.cicero_app.model.origin.OriginModel;
 import com.duende.cicero_app.repository.OriginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
