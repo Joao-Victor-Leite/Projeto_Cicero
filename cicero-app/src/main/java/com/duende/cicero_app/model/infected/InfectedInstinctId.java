@@ -1,0 +1,36 @@
+package com.duende.cicero_app.model.infected;
+
+import com.duende.cicero_app.model.assimilation.AssimilationSkillCostId;
+import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.Objects;
+
+@Embeddable
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class InfectedInstinctId implements Serializable {
+
+    private Long infectedId;
+    private Long instinctId;
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof InfectedInstinctId that)) return false;
+        return Objects.equals(infectedId, that.infectedId) &&
+                Objects.equals(instinctId, that.instinctId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(infectedId, instinctId);
+    }
+
+}
