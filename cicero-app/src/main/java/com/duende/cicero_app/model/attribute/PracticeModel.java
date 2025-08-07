@@ -23,6 +23,6 @@ public class PracticeModel {
     private String name;
 
     @OneToMany(mappedBy = "practice")
-    private List<InfectedPracticeModel> infectedPracticeList;
+    private List<InfectedPracticeModel> practiceList;
 
 }
