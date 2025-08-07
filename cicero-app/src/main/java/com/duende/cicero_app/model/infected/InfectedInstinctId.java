@@ -1,6 +1,5 @@
 package com.duende.cicero_app.model.infected;
 
-import com.duende.cicero_app.model.assimilation.AssimilationSkillCostId;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
