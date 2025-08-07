@@ -20,7 +20,4 @@ public abstract class OriginModel {
     @Column(unique = true, nullable = false)
     private String name;
 
-    private Integer scoreTotal = 1;
-    private Integer scoreCurrent;
-
 }

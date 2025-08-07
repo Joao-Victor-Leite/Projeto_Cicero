@@ -1,6 +1,6 @@
 package com.duende.cicero_app.model.origin;
 
-import com.duende.cicero_app.model.infected.InfectedGenerationModel;
+import com.duende.cicero_app.model.infected.InfectedOccupationModel;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -10,14 +10,14 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Entity(name = "tb_generation")
+@Entity(name = "tb_occupation")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenerationModel extends OriginModel{
+public class OccupationModel extends OriginModel{
 
-    @OneToMany(mappedBy = "generation")
-    private List<InfectedGenerationModel> generationList;
+    @OneToMany(mappedBy = "occupation")
+    private List<InfectedOccupationModel> occupationList;
 
 }
