@@ -1,12 +1,19 @@
 package com.duende.cicero_app.model.attribute;
 
+import com.duende.cicero_app.model.infected.InfectedKnowledgeModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity(name = "tb_knowledge")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class KnowledgeModel {
 
     @Id
@@ -15,5 +22,7 @@ public class KnowledgeModel {
 
     private String name;
 
-    public KnowledgeModel() {}
+    @OneToMany(mappedBy = "knowledge")
+    private List<InfectedKnowledgeModel> knowledgeList;
+
 }
