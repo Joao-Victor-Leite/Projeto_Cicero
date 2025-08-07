@@ -1,5 +1,6 @@
 package com.duende.cicero_app.model.infected;
 
+import com.duende.cicero_app.model.FeatModel;
 import com.duende.cicero_app.model.UserModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity(name="tb_infected")
 @Getter
@@ -38,5 +40,19 @@ public class InfectedModel {
 
     @OneToMany(mappedBy = "infected")
     private List<InfectedInstinctModel> instinctList;
+
+    @OneToMany(mappedBy = "infected")
+    private List<InfectedPracticeModel> practiceList;
+
+    @OneToMany(mappedBy = "infected")
+    private List<InfectedKnowledgeModel> knowledgeList;
+
+    @ManyToMany
+    @JoinTable(
+            name = "infected_feat",
+            joinColumns = @JoinColumn(name = "infected_id"),
+            inverseJoinColumns = @JoinColumn(name = "feat_id")
+    )
+    private Set<FeatModel> feats;
 
 }

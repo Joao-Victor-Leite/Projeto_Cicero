@@ -1,10 +1,13 @@
 package com.duende.cicero_app.model;
 
+import com.duende.cicero_app.model.infected.InfectedModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
 
 
 @Entity(name = "tb_feat")
@@ -23,5 +26,8 @@ public class FeatModel {
 
     @Lob
     private String description;
+
+    @ManyToMany(mappedBy = "feats")
+    private Set<InfectedModel> infected;
 
 }
