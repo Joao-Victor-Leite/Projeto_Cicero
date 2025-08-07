@@ -47,6 +47,15 @@ public class InfectedModel {
     @OneToMany(mappedBy = "infected")
     private List<InfectedKnowledgeModel> knowledgeList;
 
+    @OneToMany(mappedBy = "infected")
+    private List<InfectedGenerationModel> generationList;
+
+    @OneToMany(mappedBy = "infected")
+    private List<InfectedMajorEventModel> majorEventList;
+
+    @OneToMany(mappedBy = "infected")
+    private List<InfectedOccupationModel> occupationList;
+
     @ManyToMany
     @JoinTable(
             name = "infected_feat",
