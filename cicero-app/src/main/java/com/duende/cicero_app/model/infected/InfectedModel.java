@@ -1,7 +1,10 @@
 package com.duende.cicero_app.model.infected;
 
+import com.duende.cicero_app.model.EquipmentModel;
 import com.duende.cicero_app.model.FeatModel;
+import com.duende.cicero_app.model.purpose.PersonalPurposeModel;
 import com.duende.cicero_app.model.UserModel;
+import com.duende.cicero_app.model.purpose.RelationalPurposeModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @Entity(name="tb_infected")
@@ -56,6 +60,9 @@ public class InfectedModel {
     @OneToMany(mappedBy = "infected")
     private List<InfectedOccupationModel> occupationList;
 
+    @OneToMany
+    private List<PersonalPurposeModel> purposeModelList;
+
     @ManyToMany
     @JoinTable(
             name = "infected_feat",
@@ -63,5 +70,21 @@ public class InfectedModel {
             inverseJoinColumns = @JoinColumn(name = "feat_id")
     )
     private Set<FeatModel> feats;
+
+    @ManyToMany
+    @JoinTable(
+            name = "infected_relational_purpose",
+            joinColumns = @JoinColumn(name = "infected_id"),
+            inverseJoinColumns = @JoinColumn(name = "relational_purpose_id")
+    )
+    private Set<RelationalPurposeModel> relationalPurposes;
+
+    @ManyToMany
+    @JoinTable(
+            name = "infected_equipment",
+            joinColumns = @JoinColumn(name = "infected_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id")
+    )
+    private Set<EquipmentModel> equipment;
 
 }
