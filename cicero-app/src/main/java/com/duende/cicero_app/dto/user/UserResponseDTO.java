@@ -4,11 +4,12 @@ import com.duende.cicero_app.model.UserModel;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 public class UserResponseDTO {
 
-    private Long id;
+    private UUID id;
     private String name;
     private String email;
     private LocalDateTime createdAt;
