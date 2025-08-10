@@ -2,6 +2,7 @@ package com.duende.cicero_app.model.infected;
 
 import com.duende.cicero_app.model.EquipmentModel;
 import com.duende.cicero_app.model.FeatModel;
+import com.duende.cicero_app.model.assimilation.AssimilationSkillCostModel;
 import com.duende.cicero_app.model.purpose.PersonalPurposeModel;
 import com.duende.cicero_app.model.UserModel;
 import com.duende.cicero_app.model.purpose.RelationalPurposeModel;
@@ -86,5 +87,18 @@ public class InfectedModel {
             inverseJoinColumns = @JoinColumn(name = "equipment_id")
     )
     private Set<EquipmentModel> equipment;
+
+    @ManyToMany
+    @JoinTable(
+            name = "infected_assimilation_skill",
+            joinColumns = @JoinColumn(name = "infected_id"),
+            inverseJoinColumns = {
+                    @JoinColumn(name = "assimilation_card_skill_id", referencedColumnName = "assimilation_card_skill_id"),
+                    @JoinColumn(name = "assimilation_cost_type_id", referencedColumnName = "assimilation_cost_type_id")
+            }
+    )
+    private Set<AssimilationSkillCostModel> skillCost;
+
+
 
 }
