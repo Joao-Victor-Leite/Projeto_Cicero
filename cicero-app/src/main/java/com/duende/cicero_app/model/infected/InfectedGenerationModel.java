@@ -24,7 +24,7 @@ public class InfectedGenerationModel {
 
     @ManyToOne
     @JoinColumn(name = "generation_id")
-    private GenerationModel generationList;
+    private GenerationModel generation;
 
     private Integer scoreTotal = 1;
     private Integer scoreCurrent;

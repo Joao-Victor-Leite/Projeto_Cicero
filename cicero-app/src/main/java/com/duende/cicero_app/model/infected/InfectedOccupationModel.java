@@ -24,7 +24,7 @@ public class InfectedOccupationModel {
 
     @ManyToOne
     @JoinColumn(name = "occupation_id")
-    private OccupationModel occupationList;
+    private OccupationModel occupation;
 
     private Integer scoreTotal = 1;
     private Integer scoreCurrent;

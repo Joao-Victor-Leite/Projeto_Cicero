@@ -24,7 +24,7 @@ public class InfectedMajorEventModel {
 
     @ManyToOne
     @JoinColumn(name = "major_event_id")
-    private MajorEventModel majorEventList;
+    private MajorEventModel majorEvent;
 
     private Integer scoreTotal = 1;
     private Integer scoreCurrent;
