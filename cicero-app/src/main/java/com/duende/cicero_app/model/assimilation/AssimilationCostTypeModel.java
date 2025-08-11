@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity(name = "tb_assimilation_cost_type")
 @Getter
 @Setter
@@ -18,5 +20,8 @@ public class AssimilationCostTypeModel {
     private Long id;
 
     private String name;
+
+    @OneToMany(mappedBy = "assimilationCostType")
+    private List<AssimilationSkillCostModel> skillCost;
 
 }
