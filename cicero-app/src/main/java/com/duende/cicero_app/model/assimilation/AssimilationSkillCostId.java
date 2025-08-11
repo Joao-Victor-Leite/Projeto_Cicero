@@ -16,20 +16,20 @@ import java.util.Objects;
 @NoArgsConstructor
 public class AssimilationSkillCostId implements Serializable {
 
-    private Long assimilationCardSkillId;
+    private Long assimilationSkillId;
     private Long assimilationCostTypeId;
 
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof AssimilationSkillCostId that)) return false;
-        return Objects.equals(assimilationCardSkillId, that.assimilationCardSkillId) &&
+        return Objects.equals(assimilationSkillId, that.assimilationSkillId) &&
                 Objects.equals(assimilationCostTypeId, that.assimilationCostTypeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(assimilationCardSkillId, assimilationCostTypeId);
+        return Objects.hash(assimilationSkillId, assimilationCostTypeId);
     }
 
 }
