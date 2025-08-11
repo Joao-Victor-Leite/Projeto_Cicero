@@ -90,15 +90,13 @@ public class InfectedModel {
 
     @ManyToMany
     @JoinTable(
-            name = "infected_assimilation_skill",
+            name = "tb_infected_assimilation",
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = {
-                    @JoinColumn(name = "assimilation_card_skill_id", referencedColumnName = "assimilation_card_skill_id"),
-                    @JoinColumn(name = "assimilation_cost_type_id", referencedColumnName = "assimilation_cost_type_id")
+                    @JoinColumn(name = "assimilation_skill_id"),
+                    @JoinColumn(name = "assimilation_cost_type_id")
             }
     )
-    private Set<AssimilationSkillCostModel> skillCost;
-
-
+    private List<AssimilationSkillCostModel> skillCost;
 
 }
