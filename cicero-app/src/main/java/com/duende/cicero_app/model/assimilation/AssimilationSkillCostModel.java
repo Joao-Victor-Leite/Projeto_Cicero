@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity(name = "tb_assimilation_skill_cost")
 @Getter
@@ -20,9 +20,9 @@ public class AssimilationSkillCostModel {
     private AssimilationSkillCostId id = new AssimilationSkillCostId();
 
     @ManyToOne
-    @MapsId("assimilationCardSkillId")
-    @JoinColumn(name = "assimilation_card_skill_id")
-    private AssimilationCardModel assimilationCard;
+    @MapsId("assimilationSkillId")
+    @JoinColumn(name = "assimilation_skill_id")
+    private AssimilationSkillModel assimilationSkill;
 
     @ManyToOne
     @MapsId("assimilationCostTypeId")
@@ -32,6 +32,6 @@ public class AssimilationSkillCostModel {
     private Integer quantity;
 
     @ManyToMany(mappedBy = "skillCost")
-    private Set<InfectedModel> infected;
+    private List<InfectedModel> infected;
 
 }
