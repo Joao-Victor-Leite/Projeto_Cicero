@@ -1,6 +1,6 @@
 package com.duende.cicero_app.model.infected;
 
-import com.duende.cicero_app.model.EquipmentModel;
+import com.duende.cicero_app.model.item.EquipmentModel;
 import com.duende.cicero_app.model.FeatModel;
 import com.duende.cicero_app.model.assimilation.AssimilationSkillCostModel;
 import com.duende.cicero_app.model.purpose.PersonalPurposeModel;
@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
 
 @Entity(name="tb_infected")

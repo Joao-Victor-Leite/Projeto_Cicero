@@ -1,4 +1,4 @@
-package com.duende.cicero_app.model;
+package com.duende.cicero_app.model.item;
 
 import com.duende.cicero_app.model.infected.InfectedModel;
 import jakarta.persistence.*;
