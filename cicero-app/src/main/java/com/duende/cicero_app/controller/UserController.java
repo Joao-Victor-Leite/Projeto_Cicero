@@ -1,7 +1,6 @@
 package com.duende.cicero_app.controller;
 
 import com.duende.cicero_app.dto.user.UserCreateDTO;
-import com.duende.cicero_app.dto.user.UserResponseDTO;
 import com.duende.cicero_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
