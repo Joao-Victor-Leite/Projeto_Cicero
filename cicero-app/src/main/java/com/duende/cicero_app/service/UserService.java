@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +30,7 @@ public class UserService {
     }
 
     // GET BY ID
-    public UserResponseDTO findUserByID(Long id) {
+    public UserResponseDTO findUserByID(UUID id) {
         UserModel user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com este id"));
         return UserResponseDTO.fromEntity(user);
@@ -48,7 +49,7 @@ public class UserService {
     }
 
     // PUT
-    public UserResponseDTO updateUser(Long id, UserCreateDTO dto) {
+    public UserResponseDTO updateUser(UUID id, UserCreateDTO dto) {
         UserModel userExisting = userRepository.findById(id)
                 .orElse(null);
 
@@ -59,12 +60,13 @@ public class UserService {
 
         Utils.copyNonNullProperties(userUpdated, userExisting);
 
+        assert userExisting != null;
         UserModel userSaved = userRepository.save(userExisting);
         return  UserResponseDTO.fromEntity(userSaved);
     }
 
     // DELETE
-    public void deleteUser(Long id) {
+    public void deleteUser(UUID id) {
         if(!userRepository.existsById(id)) {
             throw new RuntimeException("Usuário não encontrado");
         }
