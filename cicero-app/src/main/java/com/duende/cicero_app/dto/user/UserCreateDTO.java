@@ -1,14 +1,9 @@
 package com.duende.cicero_app.dto.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
-@Getter
-@Setter
-public class UserCreateDTO {
-
-    private String name;
-    private String email;
-    private String password;
-
-}
+public record UserCreateDTO(
+        @NotBlank String name,
+        @NotBlank String email,
+        @NotBlank String password
+) {}

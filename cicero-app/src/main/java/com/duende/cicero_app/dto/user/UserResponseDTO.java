@@ -1,25 +1,25 @@
 package com.duende.cicero_app.dto.user;
 
 import com.duende.cicero_app.model.UserModel;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-public class UserResponseDTO {
 
-    private UUID id;
-    private String name;
-    private String email;
-    private LocalDateTime createdAt;
+public record UserResponseDTO(
+        UUID id,
+        String name,
+        String email,
+        LocalDateTime updatedData
+) {
 
     public static UserResponseDTO fromEntity(UserModel user) {
-        UserResponseDTO dto = new UserResponseDTO();
-        dto.id = user.getId();
-        dto.name = user.getName();
-        dto.email = user.getEmail();
-        dto.createdAt = user.getCreatedData();
-        return dto;
+        return new UserResponseDTO(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getUpdatedData()
+        );
     }
+
 }
