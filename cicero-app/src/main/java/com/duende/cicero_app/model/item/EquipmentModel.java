@@ -28,7 +28,7 @@ public class EquipmentModel {
 
     @ManyToMany
     @JoinTable(
-            name = "equipment_quality",
+            name = "tb_equipment_quality",
             joinColumns = @JoinColumn(name = "equipment_id"),
             inverseJoinColumns = @JoinColumn(name = "quality_id")
     )
