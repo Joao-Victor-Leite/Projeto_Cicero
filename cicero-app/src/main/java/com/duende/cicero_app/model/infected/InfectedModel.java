@@ -65,7 +65,7 @@ public class InfectedModel {
 
     @ManyToMany
     @JoinTable(
-            name = "infected_feat",
+            name = "tb_infected_feat",
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = @JoinColumn(name = "feat_id")
     )
@@ -73,7 +73,7 @@ public class InfectedModel {
 
     @ManyToMany
     @JoinTable(
-            name = "infected_relational_purpose",
+            name = "tb_infected_relational_purpose",
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = @JoinColumn(name = "relational_purpose_id")
     )
@@ -81,7 +81,7 @@ public class InfectedModel {
 
     @ManyToMany
     @JoinTable(
-            name = "infected_equipment",
+            name = "tb_infected_equipment",
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = @JoinColumn(name = "equipment_id")
     )
