@@ -5,7 +5,10 @@ import com.duende.cicero_app.service.HealthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,13 +25,14 @@ public class HealthController {
 
     @GetMapping
     public ResponseEntity<List<HealthResponseDTO>> findAll() {
-        List<HealthResponseDTO> healthBox = healthService.findAllHealths();
-        return ResponseEntity.status(HttpStatus.OK).body(healthBox);
+        List<HealthResponseDTO> healths = healthService.findAllHealths();
+        return ResponseEntity.status(HttpStatus.OK).body(healths);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<HealthResponseDTO> findById(@PathVariable Long id) {
-        HealthResponseDTO healthBox = healthService.findHealthById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(healthBox);
+        HealthResponseDTO health = healthService.findHealthById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(health);
     }
+
 }
