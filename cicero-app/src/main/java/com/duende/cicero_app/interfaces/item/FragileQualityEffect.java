@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 public class FragileQualityEffect implements QualityEffectsStrategy {
 
     @Override
-    public void apply(EquipmentModel equipment) {
+    public void apply (EquipmentModel equipment) {
+
         equipment.setUsesTotal(equipment.getUsesTotal() - 1);
         equipment.setUsesCurrent(equipment.getUsesTotal());
+
     }
 
 }
