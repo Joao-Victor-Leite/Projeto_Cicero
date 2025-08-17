@@ -26,7 +26,7 @@ public class QualityModel {
     @Lob
     private String description;
 
-    @ManyToMany(mappedBy = "quality")
+    @ManyToMany(mappedBy = "qualities")
     private Set<EquipmentModel> equipment;
 
 }
