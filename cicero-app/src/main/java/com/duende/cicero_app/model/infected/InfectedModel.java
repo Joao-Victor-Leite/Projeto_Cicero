@@ -1,5 +1,6 @@
 package com.duende.cicero_app.model.infected;
 
+import com.duende.cicero_app.model.item.ContainerModel;
 import com.duende.cicero_app.model.item.EquipmentModel;
 import com.duende.cicero_app.model.FeatModel;
 import com.duende.cicero_app.model.assimilation.AssimilationSkillCostModel;
@@ -37,9 +38,6 @@ public class InfectedModel {
     private Integer determinationCurrent;
     private Integer assimilationTotal;
     private Integer assimilationCurrent;
-
-    // pensar em como gerenciar a carga do personagem
-
     private Boolean susceptible = Boolean.FALSE;
 
     @OneToMany(mappedBy = "infected")
@@ -63,6 +61,9 @@ public class InfectedModel {
     @OneToMany
     private List<PersonalPurposeModel> purposeModelList;
 
+    @OneToMany
+    private List<ContainerModel> containerList;
+
     @ManyToMany
     @JoinTable(
             name = "tb_infected_feat",
@@ -78,14 +79,6 @@ public class InfectedModel {
             inverseJoinColumns = @JoinColumn(name = "relational_purpose_id")
     )
     private Set<RelationalPurposeModel> relationalPurposes;
-
-    @ManyToMany
-    @JoinTable(
-            name = "tb_infected_equipment",
-            joinColumns = @JoinColumn(name = "infected_id"),
-            inverseJoinColumns = @JoinColumn(name = "equipment_id")
-    )
-    private Set<EquipmentModel> equipment;
 
     @ManyToMany
     @JoinTable(
