@@ -1,12 +1,12 @@
 package com.duende.cicero_app.model.item;
 
-import com.duende.cicero_app.model.infected.InfectedModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity(name = "tb_equipment")
@@ -22,9 +22,13 @@ public class EquipmentModel {
 
     private String name;
     private Integer points;
-    private Integer usesTotal = 4;
-    private Integer usesCurrent = usesTotal;
-    private Integer size = 1;
+    private Integer usesTotal;
+    private Integer usesCurrent;
+    private Integer size;
+    private Boolean broken;
+
+    @OneToMany(mappedBy = "equipment")
+    private List<ContainerEquipmentModel> containerEquipmentList;
 
     @ManyToMany
     @JoinTable(
@@ -32,9 +36,6 @@ public class EquipmentModel {
             joinColumns = @JoinColumn(name = "equipment_id"),
             inverseJoinColumns = @JoinColumn(name = "quality_id")
     )
-    private Set<QualityModel> quality;
-
-    @ManyToMany(mappedBy = "equipment")
-    private Set<InfectedModel> infected;
+    private Set<QualityModel> qualities;
 
 }
