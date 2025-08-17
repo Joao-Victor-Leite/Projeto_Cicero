@@ -1,15 +1,15 @@
-package com.duende.cicero_app.interfaces.item;
+package com.duende.cicero_app.service.interfaces.item;
 
 import com.duende.cicero_app.model.item.EquipmentModel;
 import org.springframework.stereotype.Component;
 
 @Component("Durável")
-public class DurableQualityEffect implemets QualityEffectsStrategy {
+public class DurableEquipmentQualityEffect implements EquipmentQualityEffectsStrategy {
 
     @Override
-    public void apply (EquipmentModel equipment) {
+    public void applyEquipmentQuality(EquipmentModel equipment) {
 
-        boolean isConsumable = equipment.getQuality()
+        boolean isConsumable = equipment.getQualities()
                 .stream()
                 .anyMatch(q -> "Consumível".equalsIgnoreCase(q.getName()));
 
@@ -17,7 +17,7 @@ public class DurableQualityEffect implemets QualityEffectsStrategy {
             throw new IllegalArgumentException("Não é possível aplicar a qualidade 'Durável' em um item Consumível");
         }
 
-        long countDurable = equipment.getQuality()
+        long countDurable = equipment.getQualities()
                 .stream()
                 .filter(q -> "Durável".equalsIgnoreCase(q.getName()))
                 .count();
