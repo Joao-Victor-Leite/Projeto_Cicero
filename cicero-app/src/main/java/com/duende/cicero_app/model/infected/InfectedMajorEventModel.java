@@ -26,7 +26,7 @@ public class InfectedMajorEventModel {
     @JoinColumn(name = "major_event_id")
     private MajorEventModel majorEvent;
 
-    private Integer scoreTotal = 1;
+    private Integer scoreTotal;
     private Integer scoreCurrent;
 
 }

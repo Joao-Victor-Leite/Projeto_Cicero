@@ -26,7 +26,8 @@ public class InfectedGenerationModel {
     @JoinColumn(name = "generation_id")
     private GenerationModel generation;
 
-    private Integer scoreTotal = 1;
+    private String description;
+    private Integer scoreTotal;
     private Integer scoreCurrent;
 
 }

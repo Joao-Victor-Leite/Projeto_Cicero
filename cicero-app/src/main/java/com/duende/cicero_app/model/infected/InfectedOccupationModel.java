@@ -26,7 +26,7 @@ public class InfectedOccupationModel {
     @JoinColumn(name = "occupation_id")
     private OccupationModel occupation;
 
-    private Integer scoreTotal = 1;
+    private Integer scoreTotal;
     private Integer scoreCurrent;
 
 }
