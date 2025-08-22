@@ -20,7 +20,9 @@ public class ContainerModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private ContainerType type;
+
     private Integer totalSize;
     private Integer currentSize;
     private Integer spaciousLevel;
