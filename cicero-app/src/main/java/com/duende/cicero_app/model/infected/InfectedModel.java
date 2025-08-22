@@ -38,7 +38,11 @@ public class InfectedModel {
     private Integer determinationCurrent;
     private Integer assimilationTotal;
     private Integer assimilationCurrent;
-    private Boolean susceptible = Boolean.FALSE;
+
+    @Enumerated(EnumType.STRING)
+    private AttributeHealth attributeHealth;
+
+    private Boolean susceptible;
 
     @OneToMany(mappedBy = "infected")
     private List<InfectedInstinctModel> instinctList;
