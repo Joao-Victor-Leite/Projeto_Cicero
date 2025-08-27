@@ -1,69 +1,106 @@
 package com.duende.cicero_app.service.infected;
 
 import com.duende.cicero_app.dto.infected.InfectedCreateDTO;
+import com.duende.cicero_app.dto.infected.InfectedResponseDTO;
 import com.duende.cicero_app.model.UserModel;
-import com.duende.cicero_app.model.infected.InfectedGenerationModel;
-import com.duende.cicero_app.model.infected.InfectedMajorEventModel;
 import com.duende.cicero_app.model.infected.InfectedModel;
-import com.duende.cicero_app.model.infected.InfectedOccupationModel;
-import com.duende.cicero_app.model.item.ContainerModel;
-import com.duende.cicero_app.model.item.ContainerType;
-import com.duende.cicero_app.model.origin.GenerationModel;
-import com.duende.cicero_app.model.origin.MajorEventModel;
-import com.duende.cicero_app.model.origin.OccupationModel;
 import com.duende.cicero_app.repository.UserRepository;
-import com.duende.cicero_app.repository.infected.InfectedMajorEventRepository;
-import com.duende.cicero_app.repository.infected.InfectedOccupationRepository;
 import com.duende.cicero_app.repository.infected.InfectedRepository;
-import com.duende.cicero_app.repository.item.ContainerRepository;
-import com.duende.cicero_app.repository.origin.GenerationRepository;
-import com.duende.cicero_app.repository.origin.MajorEventRepository;
-import com.duende.cicero_app.repository.origin.OccupationRepository;
+import com.duende.cicero_app.service.container.ContainerService;
+import com.duende.cicero_app.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class InfectedService {
 
-    private final ContainerRepository containerRepository;
-    private final GenerationRepository generationRepository;
+    private final ContainerService containerService;
+    private final InfectedGenerationService infectedGenerationService;
     private final InfectedRepository infectedRepository;
-    private final InfectedMajorEventRepository infectedMajorEventRepository;
-    private final InfectedOccupationRepository infectedOccupationRepository;
-    private final MajorEventRepository majorEventRepository;
-    private final OccupationRepository occupationRepository;
+    private final InfectedMajorEventService infectedMajorEventService;
+    private final InfectedOccupationService infectedOccupationService;
     private final UserRepository userRepository;
 
     @Autowired
-    public InfectedService(ContainerRepository containerRepository,
-                           GenerationRepository generationRepository,
+    public InfectedService(ContainerService containerService,
+                           InfectedGenerationService infectedGenerationService,
                            InfectedRepository infectedRepository,
-                           InfectedMajorEventRepository infectedMajorEventRepository,
-                           InfectedOccupationRepository infectedOccupationRepository,
-                           MajorEventRepository majorEventRepository,
-                           OccupationRepository occupationRepository,
+                           InfectedMajorEventService infectedMajorEventService,
+                           InfectedOccupationService infectedOccupationService,
                            UserRepository userRepository
                            ) {
-        this.containerRepository = containerRepository;
-        this.generationRepository = generationRepository;
+        this.containerService = containerService;
+        this.infectedGenerationService = infectedGenerationService;
         this.infectedRepository = infectedRepository;
-        this.infectedMajorEventRepository = infectedMajorEventRepository;
-        this.infectedOccupationRepository = infectedOccupationRepository;
-        this.majorEventRepository = majorEventRepository;
-        this.occupationRepository = occupationRepository;
+        this.infectedMajorEventService = infectedMajorEventService;
+        this.infectedOccupationService = infectedOccupationService;
         this.userRepository = userRepository;
 
     }
 
+    // GET ALL
+    public List<InfectedResponseDTO> findAllInfected() {
+        return infectedRepository.findAll().stream()
+                .map(InfectedResponseDTO::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    // GET BY ID
+    public InfectedResponseDTO findInfectedById (Long id) {
+        InfectedModel infected = infectedRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Infectado não encontrado"));
+        return InfectedResponseDTO.fromEntity(infected);
+    }
+
     // CREATE
-    public InfectedModel createInfected (InfectedCreateDTO dto) {
+    public void createInfected (InfectedCreateDTO dto) {
 
         UserModel user = userRepository.findById(dto.userId())
                 .orElseThrow(() -> new NoSuchElementException("Usuario não encontrado"));
 
+        InfectedModel infected = getInfectedModel(dto, user);
+
+        infected = infectedRepository.save(infected);
+
+        containerService.createDefaultContainers(infected);
+        infectedGenerationService.linkGeneration(infected, dto.generationId(), dto.generationDescription());
+        infectedMajorEventService.linkMajorEvent(infected, dto.majorEventId());
+        infectedOccupationService.linkOccupation(infected, dto.occupationId());
+
+        infectedRepository.save(infected);
+
+    }
+
+    // UPDATE
+    public InfectedResponseDTO updateInfected (Long id, InfectedCreateDTO dto) {
+        InfectedModel infected = infectedRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Infectado não encontrado"));
+
+        InfectedModel updatedData = getInfectedModel(dto, infected.getUser());
+        Utils.copyNonNullProperties(updatedData, infected);
+
+        InfectedModel savedData = infectedRepository.save(updatedData);
+
+        return InfectedResponseDTO.fromEntity(savedData);
+
+    }
+
+    // DELETE
+    public void deleteInfected (Long id) {
+
+        if (!infectedRepository.existsById(id)) {
+            throw new RuntimeException("Infectado não existe");
+        }
+
+        infectedRepository.deleteById(id);
+
+    }
+
+    private static InfectedModel getInfectedModel(InfectedCreateDTO dto, UserModel user) {
         InfectedModel infected = new InfectedModel();
         infected.setName(dto.name());
         infected.setUser(user);
@@ -73,67 +110,7 @@ public class InfectedService {
         infected.setAssimilationCurrent(infected.getAssimilationTotal());
         infected.setAttributeHealth(dto.attributeHealth());
         infected.setSusceptible(Boolean.FALSE);
-
-        infected = infectedRepository.save(infected);
-
-        // Lógica para criação de inventário do personagem
-        ContainerModel personal = new ContainerModel();
-        personal.setType(ContainerType.PERSONAL);
-        personal.setTotalSize(2);
-        personal.setCurrentSize(0);
-        personal.setInfected(infected);
-
-        ContainerModel backpack = new ContainerModel();
-        backpack.setType(ContainerType.BACKPACK);
-        backpack.setTotalSize(6);
-        backpack.setCurrentSize(0);
-        backpack.setInfected(infected);
-
-        containerRepository.saveAll(List.of(personal, backpack));
-
-        infected.setContainerList(List.of(personal, backpack));
-        infected = infectedRepository.save(infected);
-
-        // Lógica de ínculo entre infectado e sua geraçã́o
-        GenerationModel generation = generationRepository.findById(dto.generationId())
-                .orElseThrow(() -> new NoSuchElementException("Geração não encontrada"));
-
-        InfectedGenerationModel infectedGeneration = new InfectedGenerationModel();
-        infectedGeneration.setInfected(infected);
-        infectedGeneration.setGeneration(generation);
-        infectedGeneration.setDescription(dto.generationDescription());
-        infectedGeneration.setScoreTotal(1);
-        infectedGeneration.setScoreCurrent(infectedGeneration.getScoreTotal());
-
-        infected.setGenerationList(List.of(infectedGeneration));
-
-        // Lógica de ínculo entre infectado e seu evento marcante
-        MajorEventModel majorEvent = majorEventRepository.findById(dto.majorEventId())
-                .orElseThrow(() -> new NoSuchElementException("Evento marcante não encontrado"));
-
-        InfectedMajorEventModel infectedMajorEvent = new InfectedMajorEventModel();
-        infectedMajorEvent.setInfected(infected);
-        infectedMajorEvent.setMajorEvent(majorEvent);
-        infectedMajorEvent.setScoreTotal(1);
-        infectedMajorEvent.setScoreCurrent(infectedMajorEvent.getScoreTotal());
-
-        infectedMajorEventRepository.save(infectedMajorEvent);
-
-        // Lógica de ínculo entre infectado e sua ocupação
-        OccupationModel occupation = occupationRepository.findById(dto.occupationId())
-                .orElseThrow(() -> new NoSuchElementException("Ocupação não encontrado"));
-
-        InfectedOccupationModel infectedOccupation = new InfectedOccupationModel();
-        infectedOccupation.setInfected(infected);
-        infectedOccupation.setOccupation(occupation);
-        infectedOccupation.setScoreTotal(1);
-        infectedOccupation.setScoreCurrent(infectedOccupation.getScoreTotal());
-
-        infectedOccupationRepository.save(infectedOccupation);
-
-        return infectedRepository.save(infected);
-
+        return infected;
     }
 
-    
 }
