@@ -15,7 +15,7 @@ public abstract class OriginModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Short id;
 
     @Column(unique = true, nullable = false)
     private String name;

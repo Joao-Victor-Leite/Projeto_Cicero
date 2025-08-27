@@ -19,7 +19,7 @@ public class FeatModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Short id;
 
     private String name;
     private Integer cost;
