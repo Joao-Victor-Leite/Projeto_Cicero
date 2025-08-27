@@ -6,8 +6,6 @@ public record InfectedResponseDTO(
         String name
 ) {
     public static InfectedResponseDTO fromEntity (InfectedModel infected) {
-        return new InfectedResponseDTO(
-                infected.getName()
-        );
+        return new InfectedResponseDTO(infected.getName());
     }
 }

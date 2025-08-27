@@ -9,9 +9,9 @@ public record InfectedCreateDTO(
         String name,
         Integer determinationTotal,
         AttributeHealth attributeHealth,
-        Long generationId,
+        Short generationId,
         String generationDescription,
-        Long majorEventId,
-        Long occupationId
+        Short majorEventId,
+        Short occupationId
 ) {
 }
