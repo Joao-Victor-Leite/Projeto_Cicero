@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final InfectedRepository infectedRepository;
 
     @Autowired
     public UserService (
@@ -25,7 +24,6 @@ public class UserService {
             InfectedRepository infectedRepository
     ) {
         this.userRepository = userRepository;
-        this.infectedRepository = infectedRepository;
     }
 
     // GET ALL
@@ -49,26 +47,26 @@ public class UserService {
     }
 
     // CREATE
-    public UserModel createUser (UserCreateDTO dto) {
+    public void createUser (UserCreateDTO dto) {
 
         UserModel user = new UserModel();
         user.setName(dto.name());
         user.setEmail(dto.email());
         user.setPassword(dto.password());
 
-        return userRepository.save(user);
+        userRepository.save(user);
 
     }
 
     // UPDATE
-    public UserResponseDTO updateUser(UUID id, UserCreateDTO dto) {
+    public void updateUser(UUID id, UserCreateDTO dto) {
 
         UserModel user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         Utils.copyNonNullProperties(dto, user);
         UserModel updated = userRepository.save(user);
 
-        return UserResponseDTO.fromEntity(updated);
+        UserResponseDTO.fromEntity(updated);
 
     }
 
