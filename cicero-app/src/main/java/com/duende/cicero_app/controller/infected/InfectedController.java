@@ -37,6 +37,13 @@ public class InfectedController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<InfectedResponseDTO> update (@PathVariable Long id,
+                                                       @RequestBody InfectedCreateDTO dto) {
+        infectedService.updateInfected(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
