@@ -76,16 +76,16 @@ public class InfectedService {
     }
 
     // UPDATE
-    public InfectedResponseDTO updateInfected (Long id, InfectedCreateDTO dto) {
+    public void updateInfected (Long id, InfectedCreateDTO dto) {
+
         InfectedModel infected = infectedRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Infectado não encontrado"));
 
         InfectedModel updatedData = getInfectedModel(dto, infected.getUser());
         Utils.copyNonNullProperties(updatedData, infected);
+        InfectedModel savedData = infectedRepository.save(infected);
 
-        InfectedModel savedData = infectedRepository.save(updatedData);
-
-        return InfectedResponseDTO.fromEntity(savedData);
+        InfectedResponseDTO.fromEntity(savedData);
 
     }
 
