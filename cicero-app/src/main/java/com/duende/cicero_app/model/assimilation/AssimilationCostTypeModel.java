@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_assimilation_cost_type")
@@ -22,6 +23,6 @@ public class AssimilationCostTypeModel {
     private String name;
 
     @OneToMany(mappedBy = "assimilationCostType")
-    private List<AssimilationSkillCostModel> skillCost;
+    private List<AssimilationSkillCostModel> skillCost = new ArrayList<>();
 
 }

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_major_event")
@@ -18,6 +19,6 @@ import java.util.List;
 public class MajorEventModel extends OriginModel{
 
     @OneToMany(mappedBy = "majorEvent")
-    private List<InfectedMajorEventModel> majorEventList;
+    private List<InfectedMajorEventModel> majorEventList = new ArrayList<>();
 
 }

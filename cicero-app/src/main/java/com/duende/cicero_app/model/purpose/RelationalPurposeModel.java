@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "tb_relational_purpose")
@@ -18,6 +19,6 @@ import java.util.Set;
 public class RelationalPurposeModel extends PurposeModel{
 
     @ManyToMany(mappedBy = "relationalPurposes")
-    private Set<InfectedModel> infected;
+    private Set<InfectedModel> infected = new HashSet<>();
 
 }

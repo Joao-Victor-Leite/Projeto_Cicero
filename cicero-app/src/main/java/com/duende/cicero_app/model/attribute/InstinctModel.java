@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_instinct")
@@ -23,6 +24,6 @@ public class InstinctModel {
     private String name;
 
     @OneToMany(mappedBy = "instinct")
-    private List<InfectedInstinctModel> instinctList;
+    private List<InfectedInstinctModel> instinctList = new ArrayList<>();
 
 }

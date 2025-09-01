@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -28,7 +30,7 @@ public class EquipmentModel {
     private Boolean broken;
 
     @OneToMany(mappedBy = "equipment")
-    private List<ContainerEquipmentModel> containerEquipmentList;
+    private List<ContainerEquipmentModel> containerEquipmentList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -36,6 +38,6 @@ public class EquipmentModel {
             joinColumns = @JoinColumn(name = "equipment_id"),
             inverseJoinColumns = @JoinColumn(name = "quality_id")
     )
-    private Set<QualityModel> qualities;
+    private Set<QualityModel> qualities = new HashSet<>();
 
 }

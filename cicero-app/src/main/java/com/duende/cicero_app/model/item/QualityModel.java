@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "tb_quality")
@@ -27,6 +28,6 @@ public class QualityModel {
     private String description;
 
     @ManyToMany(mappedBy = "qualities")
-    private Set<EquipmentModel> equipment;
+    private Set<EquipmentModel> equipment = new HashSet<>();
 
 }

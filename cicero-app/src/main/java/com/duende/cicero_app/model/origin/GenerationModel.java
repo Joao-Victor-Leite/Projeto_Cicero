@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_generation")
@@ -18,6 +19,6 @@ import java.util.List;
 public class GenerationModel extends OriginModel{
 
     @OneToMany(mappedBy = "generation")
-    private List<InfectedGenerationModel> generationList;
+    private List<InfectedGenerationModel> generationList = new ArrayList<>();
 
 }

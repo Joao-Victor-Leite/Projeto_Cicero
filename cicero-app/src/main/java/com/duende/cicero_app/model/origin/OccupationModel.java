@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_occupation")
@@ -18,6 +19,6 @@ import java.util.List;
 public class OccupationModel extends OriginModel{
 
     @OneToMany(mappedBy = "occupation")
-    private List<InfectedOccupationModel> occupationList;
+    private List<InfectedOccupationModel> occupationList = new ArrayList<>();
 
 }

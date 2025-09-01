@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_knowledge")
@@ -23,6 +24,6 @@ public class KnowledgeModel {
     private String name;
 
     @OneToMany(mappedBy = "knowledge")
-    private List<InfectedKnowledgeModel> knowledgeList;
+    private List<InfectedKnowledgeModel> knowledgeList = new ArrayList<>();
 
 }

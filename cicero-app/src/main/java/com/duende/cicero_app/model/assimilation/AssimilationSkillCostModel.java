@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_assimilation_skill_cost")
@@ -32,6 +33,6 @@ public class AssimilationSkillCostModel {
     private Integer quantity;
 
     @ManyToMany(mappedBy = "skillCost")
-    private List<InfectedModel> infected;
+    private List<InfectedModel> infected = new ArrayList<>();
 
 }

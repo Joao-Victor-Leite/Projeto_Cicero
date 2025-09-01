@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_container")
@@ -28,7 +29,7 @@ public class ContainerModel {
     private Integer spaciousLevel;
 
     @OneToMany(mappedBy = "container")
-    private List<ContainerEquipmentModel> containerEquipmentList;
+    private List<ContainerEquipmentModel> containerEquipmentList = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "infected_id")

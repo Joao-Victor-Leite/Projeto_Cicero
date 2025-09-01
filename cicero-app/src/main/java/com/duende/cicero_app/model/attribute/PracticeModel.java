@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "tb_practice")
@@ -23,6 +24,6 @@ public class PracticeModel {
     private String name;
 
     @OneToMany(mappedBy = "practice")
-    private List<InfectedPracticeModel> practiceList;
+    private List<InfectedPracticeModel> practiceList = new ArrayList<>();
 
 }

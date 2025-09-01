@@ -13,6 +13,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,28 +47,28 @@ public class InfectedModel {
     private Boolean susceptible;
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedInstinctModel> instinctList;
+    private List<InfectedInstinctModel> instinctList = new ArrayList<>();
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedPracticeModel> practiceList;
+    private List<InfectedPracticeModel> practiceList = new ArrayList<>();
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedKnowledgeModel> knowledgeList;
+    private List<InfectedKnowledgeModel> knowledgeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedGenerationModel> generationList;
+    private List<InfectedGenerationModel> generationList = new ArrayList<>();
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedMajorEventModel> majorEventList;
+    private List<InfectedMajorEventModel> majorEventList = new ArrayList<>();
 
     @OneToMany(mappedBy = "infected")
-    private List<InfectedOccupationModel> occupationList;
+    private List<InfectedOccupationModel> occupationList = new ArrayList<>();
 
     @OneToMany
-    private List<PersonalPurposeModel> purposeModelList;
+    private List<PersonalPurposeModel> purposeModelList = new ArrayList<>();
 
     @OneToMany
-    private List<ContainerModel> containerList;
+    private List<ContainerModel> containerList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -74,7 +76,7 @@ public class InfectedModel {
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = @JoinColumn(name = "feat_id")
     )
-    private Set<FeatModel> feats;
+    private Set<FeatModel> feats = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -82,7 +84,7 @@ public class InfectedModel {
             joinColumns = @JoinColumn(name = "infected_id"),
             inverseJoinColumns = @JoinColumn(name = "relational_purpose_id")
     )
-    private Set<RelationalPurposeModel> relationalPurposes;
+    private Set<RelationalPurposeModel> relationalPurposes = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -93,6 +95,6 @@ public class InfectedModel {
                     @JoinColumn(name = "assimilation_cost_type_id")
             }
     )
-    private List<AssimilationSkillCostModel> skillCost;
+    private List<AssimilationSkillCostModel> skillCost = new ArrayList<>();
 
 }
