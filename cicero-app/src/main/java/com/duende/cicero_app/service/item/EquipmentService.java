@@ -60,10 +60,8 @@ public class EquipmentService {
         equipment.setBroken(dto.broken() != null ? dto.broken() : false);
 
         if (dto.qualityIds() != null && !dto.qualityIds().isEmpty()) {
-            Set<QualityModel> qualities = qualityRepository
-                    .findAllById(dto.qualityIds())
-                    .stream()
-                    .collect(Collectors.toSet());
+            Set<QualityModel> qualities = new HashSet<>(qualityRepository
+                    .findAllById(dto.qualityIds()));
             equipment.setQualities(qualities);
         }
 

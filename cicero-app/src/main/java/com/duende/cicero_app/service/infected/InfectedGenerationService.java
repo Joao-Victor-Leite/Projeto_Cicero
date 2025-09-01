@@ -7,6 +7,7 @@ import com.duende.cicero_app.repository.origin.GenerationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -32,6 +33,7 @@ public class InfectedGenerationService {
         infectedGeneration.setScoreTotal(1);
         infectedGeneration.setScoreCurrent(infectedGeneration.getScoreTotal());
 
-        infected.setGenerationList(List.of(infectedGeneration));
+        infected.setGenerationList(new ArrayList<>(List.of(infectedGeneration)));
+        
     }
 }

@@ -7,6 +7,7 @@ import com.duende.cicero_app.repository.item.ContainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class ContainerService {
         backpack.setInfected(infected);
 
         containerRepository.saveAll(List.of(personal, backpack));
-        infected.setContainerList(List.of(personal, backpack));
+        infected.setContainerList(new ArrayList<>(List.of(personal, backpack)));
 
     }
 }
