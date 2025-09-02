@@ -17,8 +17,10 @@ public class InfectedOccupationService {
     private final InfectedOccupationRepository infectedOccupationRepository;
 
     @Autowired
-    public InfectedOccupationService (InfectedOccupationRepository infectedOccupationRepository,
-                                      OccupationRepository occupationRepository) {
+    public InfectedOccupationService (
+            InfectedOccupationRepository infectedOccupationRepository,
+            OccupationRepository occupationRepository
+    ) {
         this.infectedOccupationRepository = infectedOccupationRepository;
         this.occupationRepository = occupationRepository;
     }

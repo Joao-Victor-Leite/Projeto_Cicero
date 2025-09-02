@@ -17,8 +17,10 @@ public class InfectedMajorEventService {
     private final InfectedMajorEventRepository infectedMajorEventRepository;
 
     @Autowired
-    public InfectedMajorEventService (MajorEventRepository majorEventRepository,
-                                      InfectedMajorEventRepository infectedMajorEventRepository) {
+    public InfectedMajorEventService (
+            MajorEventRepository majorEventRepository,
+            InfectedMajorEventRepository infectedMajorEventRepository
+    ) {
         this.majorEventRepository = majorEventRepository;
         this.infectedMajorEventRepository = infectedMajorEventRepository;
     }

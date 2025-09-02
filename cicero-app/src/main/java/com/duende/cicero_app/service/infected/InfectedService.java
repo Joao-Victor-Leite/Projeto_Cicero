@@ -26,13 +26,14 @@ public class InfectedService {
     private final UserRepository userRepository;
 
     @Autowired
-    public InfectedService(ContainerService containerService,
-                           InfectedGenerationService infectedGenerationService,
-                           InfectedRepository infectedRepository,
-                           InfectedMajorEventService infectedMajorEventService,
-                           InfectedOccupationService infectedOccupationService,
-                           UserRepository userRepository
-                           ) {
+    public InfectedService(
+            ContainerService containerService,
+            InfectedGenerationService infectedGenerationService,
+            InfectedRepository infectedRepository,
+            InfectedMajorEventService infectedMajorEventService,
+            InfectedOccupationService infectedOccupationService,
+            UserRepository userRepository
+    ) {
         this.containerService = containerService;
         this.infectedGenerationService = infectedGenerationService;
         this.infectedRepository = infectedRepository;
