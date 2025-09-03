@@ -1,4 +1,4 @@
-package com.duende.cicero_app.service.infected.attribute;
+package com.duende.cicero_app.service.infected.attributeDistribution;
 
 public enum AttributeDistributionType {
     GENERALISTA,

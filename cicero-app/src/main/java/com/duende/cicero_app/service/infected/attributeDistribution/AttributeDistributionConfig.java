@@ -1,4 +1,4 @@
-package com.duende.cicero_app.service.infected.attribute;
+package com.duende.cicero_app.service.infected.attributeDistribution;
 
 import org.springframework.stereotype.Component;
 
