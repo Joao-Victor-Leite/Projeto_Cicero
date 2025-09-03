@@ -9,32 +9,37 @@ import com.duende.cicero_app.model.infected.InfectedModel;
 import com.duende.cicero_app.repository.attribute.InstinctRepository;
 import com.duende.cicero_app.repository.infected.InfectedInstinctRepository;
 import com.duende.cicero_app.repository.infected.InfectedRepository;
-import com.duende.cicero_app.service.infected.attribute.AttributeDistributionConfig;
+import com.duende.cicero_app.service.infected.attributeDistribution.AttributeDistributionConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+@Service
 public class InfectedInstinctService {
 
     private final InfectedRepository infectedRepository;
     private final InstinctRepository instinctRepository;
     private final InfectedInstinctRepository infectedInstinctRepository;
     private final AttributeDistributionConfig distributionConfig;
+    private final InfectedAttributeService infectedAttributeService;
 
     @Autowired
     public InfectedInstinctService(
             InfectedRepository infectedRepository,
             InstinctRepository instinctRepository,
             InfectedInstinctRepository infectedInstinctRepository,
-            AttributeDistributionConfig distributionConfig
+            AttributeDistributionConfig distributionConfig,
+            InfectedAttributeService infectedAttributeService
     ) {
         this.infectedRepository = infectedRepository;
         this.instinctRepository = instinctRepository;
         this.infectedInstinctRepository = infectedInstinctRepository;
         this.distributionConfig = distributionConfig;
+        this.infectedAttributeService = infectedAttributeService;
     }
 
     public List<InfectedInstinctResponseDTO> applyDistribution(InfectedInstinctDistributionDTO dto) {
@@ -71,6 +76,9 @@ public class InfectedInstinctService {
             responseList.add(InfectedInstinctResponseDTO.fromEntity(infectedInstinct));
 
         }
+
+        infectedAttributeService.calculateHealth(infected);
+        infectedRepository.save(infected);
 
         return responseList;
     }
