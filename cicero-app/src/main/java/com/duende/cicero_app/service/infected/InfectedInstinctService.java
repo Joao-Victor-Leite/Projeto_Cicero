@@ -25,7 +25,7 @@ public class InfectedInstinctService {
     private final InstinctRepository instinctRepository;
     private final InfectedInstinctRepository infectedInstinctRepository;
     private final AttributeDistributionConfig distributionConfig;
-    private final InfectedAttributeService infectedAttributeService;
+    private final InfectedHealthAttributeService infectedHealthAttributeService;
 
     @Autowired
     public InfectedInstinctService(
@@ -33,13 +33,13 @@ public class InfectedInstinctService {
             InstinctRepository instinctRepository,
             InfectedInstinctRepository infectedInstinctRepository,
             AttributeDistributionConfig distributionConfig,
-            InfectedAttributeService infectedAttributeService
+            InfectedHealthAttributeService infectedHealthAttributeService
     ) {
         this.infectedRepository = infectedRepository;
         this.instinctRepository = instinctRepository;
         this.infectedInstinctRepository = infectedInstinctRepository;
         this.distributionConfig = distributionConfig;
-        this.infectedAttributeService = infectedAttributeService;
+        this.infectedHealthAttributeService = infectedHealthAttributeService;
     }
 
     public List<InfectedInstinctResponseDTO> applyDistribution(InfectedInstinctDistributionDTO dto) {
@@ -77,7 +77,7 @@ public class InfectedInstinctService {
 
         }
 
-        infectedAttributeService.calculateHealth(infected);
+        infectedHealthAttributeService.calculateHealth(infected);
         infectedRepository.save(infected);
 
         return responseList;

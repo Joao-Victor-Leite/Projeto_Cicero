@@ -5,7 +5,7 @@ import com.duende.cicero_app.model.infected.InfectedModel;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InfectedAttributeService {
+public class InfectedHealthAttributeService {
 
     public void calculateHealth (InfectedModel infected) {
 
