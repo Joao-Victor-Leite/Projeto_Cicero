@@ -43,8 +43,8 @@ public class InfectedInstinctService {
     }
 
     public List<InfectedInstinctResponseDTO> applyDistribution(InfectedInstinctDistributionDTO dto) {
-        InfectedModel infected = infectedRepository.findById(dto.InfectedId())
-                .orElseThrow(() -> new NoSuchElementException("Infected não encontrado"));;
+        InfectedModel infected = infectedRepository.findById(dto.infectedId())
+                .orElseThrow(() -> new NoSuchElementException("Infected não encontrado"));
 
         List<InstinctModel> instincts = instinctRepository.findAll();
         if (instincts.size() != 6) {

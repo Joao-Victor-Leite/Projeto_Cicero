@@ -5,7 +5,7 @@ import com.duende.cicero_app.service.infected.attributeDistribution.AttributeDis
 import java.util.Map;
 
 public record InfectedInstinctDistributionDTO (
-        Long InfectedId,
+        Long infectedId,
         AttributeDistributionType distributionType,
         Map<Long, Integer> instinctScores
 ) {
