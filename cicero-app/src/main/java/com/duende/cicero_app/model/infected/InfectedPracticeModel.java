@@ -29,6 +29,10 @@ public class InfectedPracticeModel {
 
     private Integer score;
 
-    public InfectedPracticeModel(InfectedModel infected, PracticeModel practiceModel) {}
+    public InfectedPracticeModel(InfectedModel infected, PracticeModel practiceModel) {
+        this.infected = infected;
+        this.practice = practiceModel;
+        this.id = new InfectedPracticeId(infected.getId(), practiceModel.getId());
+    }
 
 }

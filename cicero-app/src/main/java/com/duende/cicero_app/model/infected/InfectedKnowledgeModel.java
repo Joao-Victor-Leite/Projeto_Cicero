@@ -29,6 +29,10 @@ public class InfectedKnowledgeModel {
 
     private Integer score;
 
-    public InfectedKnowledgeModel(InfectedModel infected, KnowledgeModel knowledgeModel) {}
+    public InfectedKnowledgeModel(InfectedModel infected, KnowledgeModel knowledgeModel) {
+        this.infected = infected;
+        this.knowledge = knowledgeModel;
+        this.id = new InfectedKnowledgeId(infected.getId(), knowledgeModel.getId());
+    }
 
 }
