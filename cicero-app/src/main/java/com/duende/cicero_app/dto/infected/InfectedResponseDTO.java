@@ -16,13 +16,17 @@ public record InfectedResponseDTO(
         List<GenerationDTO> generation,
         List<MajorEventDTO> majorEvent,
         List<OccupationDTO> occupation,
-        List<InfectedInstinctDTO> instinct
+        List<InfectedInstinctDTO> instinct,
+        List<InfectedKnowledgeDTO> knowledge,
+        List<InfectedPracticeDTO> practice
 ) {
 
     public record GenerationDTO (String name, String description, Integer scoreTotal,Integer scoreCurrent) {}
     public record MajorEventDTO (String name, Integer scoreTotal,Integer scoreCurrent) {}
     public record OccupationDTO (String name, Integer scoreTotal,Integer scoreCurrent) {}
     public record InfectedInstinctDTO (String name, Integer score) {}
+    public record InfectedKnowledgeDTO (String name, Integer score) {}
+    public record InfectedPracticeDTO (String name, Integer score) {}
 
     public static InfectedResponseDTO fromEntity (InfectedModel infected) {
         return new InfectedResponseDTO(
@@ -64,6 +68,20 @@ public record InfectedResponseDTO(
                         new InfectedInstinctDTO(
                                 i.getInstinct().getName(),
                                 i.getScore()
+                        )
+                ).toList(),
+
+                infected.getKnowledgeList().stream().map(k ->
+                        new InfectedKnowledgeDTO(
+                                k.getKnowledge().getName(),
+                                k.getScore()
+                        )
+                ).toList(),
+
+                infected.getPracticeList().stream().map(p ->
+                        new InfectedPracticeDTO(
+                                p.getPractice().getName(),
+                                p.getScore()
                         )
                 ).toList()
         );
