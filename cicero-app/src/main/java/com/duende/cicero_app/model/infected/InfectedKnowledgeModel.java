@@ -28,4 +28,7 @@ public class InfectedKnowledgeModel {
     private KnowledgeModel knowledge;
 
     private Integer score;
+
+    public InfectedKnowledgeModel(InfectedModel infected, KnowledgeModel knowledgeModel) {}
+
 }

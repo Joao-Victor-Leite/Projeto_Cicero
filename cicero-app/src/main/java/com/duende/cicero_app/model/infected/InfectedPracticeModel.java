@@ -28,4 +28,7 @@ public class InfectedPracticeModel {
     private PracticeModel practice;
 
     private Integer score;
+
+    public InfectedPracticeModel(InfectedModel infected, PracticeModel practiceModel) {}
+
 }
